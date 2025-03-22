@@ -8,7 +8,7 @@ from rest_framework.routers import DefaultRouter
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from rest_framework import permissions
-from events.views import EventViewSet
+from events.views import EventViewSet, EventRegistrationView
 
 # Створюємо view для Swagger
 schema_view = get_schema_view(
@@ -35,4 +35,5 @@ urlpatterns = [
     path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),  # Токен
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),  # Оновлення токену
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),  # Swagger UI
+    path('api/register_event/', EventRegistrationView.as_view(), name='register_event'),
 ]
